@@ -1,0 +1,109 @@
+.container {
+    background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 4rem;
+    padding-inline: 1rem;
+}
+
+.card {
+    background-color: #1e293b;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    color: #f1f5f9;
+}
+
+.title {
+    color: #93c5fd;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.input {
+    background-color: #334155;
+    color: #f1f5f9;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.input::placeholder {
+    color: #94a3b8;
+}
+
+.input:focus {
+    outline: 2px solid #3b82f6;
+}
+
+.button {
+    background-color: #16a34a;
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #15803d;
+}
+
+.reportBox {
+    margin-top: 2rem;
+    background-color: #334155;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #475569;
+}
+
+.reportTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #bfdbfe;
+}
+
+.separator {
+    margin: 1rem 0;
+    border: none;
+    border-top: 1px solid #475569;
+}
+
+.subheading {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #cbd5e1;
+}
+
+.summary p {
+    margin: 0.25rem 0;
+}
+
+.score {
+    font-weight: bold;
+}
+
+.green {
+    color: #4ade80;
+}
+
+.yellow {
+    color: #facc15;
+}
+
+.red {
+    color: #f87171;
+}
