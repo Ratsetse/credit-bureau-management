@@ -1,0 +1,66 @@
+/* Default layout */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 4rem;
+  padding-inline: 1rem;
+  transition: background 0.3s ease;
+}
+
+/* Dark Theme */
+.dark .container {
+  background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+}
+
+.dark .form {
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+
+.dark .input {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+.dark .input::placeholder {
+  color: #94a3b8;
+}
+
+.dark .button {
+  background-color: #2563eb;
+  color: white;
+}
+
+.dark .button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Light Theme */
+.light .container {
+  background: linear-gradient(to bottom right, #e0f2fe, #bae6fd);
+}
+
+.light .form {
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+.light .input {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.light .input::placeholder {
+  color: #94a3b8;
+}
+
+.light .button {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.light .button:hover {
+  background-color: #2563eb;
+}
