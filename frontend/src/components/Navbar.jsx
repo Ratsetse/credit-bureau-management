@@ -1,11 +1,13 @@
-import { useLocation, Link } from "react-router-dom";
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
+import { useAuth } from "../context/AuthContext";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { theme, toggleTheme } = useTheme();
+    const { isAuthenticated, logout, user } = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
 
     const isActive = (path) => location.pathname === path;
 
@@ -19,21 +21,44 @@ const Navbar = () => {
 
     return (
         <nav className={styles.nav}>
-            <div className={styles.logo}>📊 Credit Bureau</div>
-            <ul className={styles.menu}>
-                {links.map((link) => (
-                    <li key={link.to}>
-                        <Link
-                            to={link.to}
-                            className={`${styles.link} ${isActive(link.to) ? styles.active : ""}`}
-                        >
-                            {link.label}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+            <div className={styles.left}>
+                <div className={styles.logo}>📊 Credit Bureau</div>
+                <ul className={styles.menu}>
+                    {isAuthenticated &&
+                        links.map((link) => (
+                            <li key={link.to}>
+                                <Link
+                                    to={link.to}
+                                    className={`${styles.link} ${isActive(link.to) ? styles.active : ""}`}
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                </ul>
+            </div>
 
+            <div className={styles.right}>
+                {isAuthenticated && (
+                    <span className={styles.userWelcome}>Welcome, {user?.username}</span>
+                )}
+                {isAuthenticated ? (
+                    <button
+                        onClick={() => {
+                            logout();
+                            navigate("/loginpage");
+                        }}
+                        className={styles.logout}
+                    >
+                        Logout
+                    </button>
+                ) : (
+                    <Link to="/loginpage" className={styles.link}>
+                        Login
+                    </Link>
+                )}
+            </div>
+        </nav>
     );
 };
 

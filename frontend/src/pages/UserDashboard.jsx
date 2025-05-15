@@ -8,17 +8,37 @@ const UserDashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const fetchUsers = () => {
         axios
-            .get("http://localhost:5000/api/users")
+            .get(`${import.meta.env.VITE_API_URL}/api/users`)
+
             .then((res) => setUsers(res.data))
             .catch((err) => {
                 console.error(err);
                 alert("Error fetching users");
             });
-    }, []);
+    };
 
     const handleView = (email) => {
         navigate("/report", { state: { email } });
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm("Are you sure you want to delete this user?")) {
+            axios
+                .delete(`${import.meta.env.VITE_API_URL}/api/users/${id}`)
+
+                .then(() => {
+                    setUsers(users.filter((user) => user._id !== id));
+                })
+                .catch((err) => {
+                    console.error(err);
+                    alert("Failed to delete user");
+                });
+        }
     };
 
     return (
@@ -34,6 +54,7 @@ const UserDashboard = () => {
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Actions</th>
+                                <th>Delete</th> {/* New column */}
                             </tr>
                         </thead>
                         <tbody>
@@ -50,11 +71,19 @@ const UserDashboard = () => {
                                             View Report
                                         </button>
                                     </td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(user._id)}
+                                            className={`${styles.button} ${styles.deleteButton}`}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                             {users.length === 0 && (
                                 <tr>
-                                    <td colSpan="4" className={styles.noData}>No users found.</td>
+                                    <td colSpan="5" className={styles.noData}>No users found.</td>
                                 </tr>
                             )}
                         </tbody>
