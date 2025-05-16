@@ -1,4 +1,3 @@
-// src/pages/LoginPage.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -9,12 +8,12 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const [form, setForm] = useState({ username: "", password: "" });
 
-    const handleLogin = () => {
-        const success = login(form.username, form.password);
+    const handleLogin = async () => {
+        const success = await login(form.username, form.password);
         if (success) {
-            navigate("/dashboard");
+            navigate("/");
         } else {
-            alert("Invalid credentials. Please try again.");
+            alert("Invalid username or password");
         }
     };
 
